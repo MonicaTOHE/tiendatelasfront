@@ -1,0 +1,255 @@
+/* Estilos generales de la aplicación */
+body {
+  background-color: #f4f4f9;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Barra de navegación */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Home y Listado a la izquierda, resto a la derecha */
+  align-items: center;
+  background-color: #967167;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio uniforme entre los enlaces */
+}
+
+/* Enlaces del lado izquierdo */
+.navbar-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Enlaces del lado derecho */
+.navbar-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Estilo de los enlaces */
+.nav-link {
+  color: white !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+}
+
+.nav-link:hover {
+  background-color: #775a4e;
+  color: #007bff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.nav-link.active {
+  background-color: #7e6459;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Icono del carrito */
+.cart-icon {
+  cursor: pointer;
+  padding: 5px 10px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.cart-icon:hover {
+  background: #e4e4e4;
+}
+
+
+/* Detalles del carrito */
+.cart-details {
+  position: absolute;
+  right: 20px;
+  top: 50px;
+  width: 300px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 1100;
+  display: none;
+}
+
+.cart-icon:hover + .cart-details,
+.cart-details:hover {
+  display: block;
+}
+
+.cart-details .cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cart-details .cart-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.cart-details .cart-item span {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Contenedor principal del Home */
+.home-container {
+  max-width: 1200px;
+  margin: 120px auto; /* Centrado horizontal y espacio superior */
+  padding: 20px;
+  text-align: center;
+}
+
+.titulo-tienda {
+  font-family: "Playwrite GB S", serif;
+  font-size: 48px;
+  color: white;
+  background-color: #6b5752;
+  text-align: center;
+  padding: 20px 0;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+/* Contenido introductorio */
+.intro-content {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.intro-content h2 {
+  font-size: 32px;
+  color: #6b5752;
+  margin-bottom: 20px;
+}
+
+.intro-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Imagen del Home */
+.home-image {
+  max-width: 80%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+}
+
+/* Sección del proceso de fabricación */
+.fabric-process-section {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.process-image {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.process-description p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-top: 20px;
+  padding: 0 10%;
+}
+
+/* Lista de productos */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  margin-top: 80px;
+}
+
+.product-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-info {
+  padding: 10px;
+  text-align: center;
+}
+
+.product-price {
+  font-size: 20px;
+  color: green;
+  font-weight: bold;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: 10px auto;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+.quantity-input {
+  width: 60px;
+  margin-left: 10px;
+}
