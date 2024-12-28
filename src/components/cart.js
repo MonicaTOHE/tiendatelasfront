@@ -1,33 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "./CartContext";
 import MercadoPagoButton from "./MercadoPagoButton";
 
 function Cart() {
   const { cart, updateQuantity, removeFromCart } = useCart();
-  const mapped = cart.map((product) => {
-    return {
-      title: product.name,
-      description: product.description,
-      quantity: product.quantity,
-      currency_id: "CLP",
-      unit_price: product.price,
-    };
-  });
+  const [preferenceId, setPreferenceId] = useState(null); // Estado para almacenar el preference_id
 
-  const preferenceId = async (event) => {
-    const res = await fetch(
-      "https://tiendatelasbackend-production.up.railway.app/api/checkout",
-      {
-        method: "POST",
-        body: JSON.stringify(mapped),
-        headers: {
-          "Content-Type": "application/json",
-        },
+  const mapped = cart.map((product) => ({
+    title: product.name,
+    description: product.description,
+    quantity: product.quantity,
+    currency_id: "CLP",
+    unit_price: product.price,
+  }));
+
+  useEffect(() => {
+    const fetchPreferenceId = async () => {
+      try {
+        const res = await fetch(
+          "https://tiendatelasbackend-production.up.railway.app/api/checkout",
+          {
+            method: "POST",
+            body: JSON.stringify(mapped),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await res.json();
+        console.log("Backend response:", data); // Verifica la respuesta
+        if (data.preference_id) {
+          setPreferenceId(data.preference_id); // Guarda el preferenceId en el estado
+        } else {
+          console.error("Error: No se recibió un preference_id válido.");
+        }
+      } catch (error) {
+        console.error("Error al generar el preference_id:", error);
       }
-    );
-    console.log("asdadasdasdasdasdadadaddad", res);
-    return res;
-  };
+    };
+
+    if (mapped.length > 0) {
+      fetchPreferenceId();
+    }
+  }, [mapped]);
+
   const formatPrice = (price) =>
     price.toLocaleString("es-CL", { style: "currency", currency: "CLP" });
 
@@ -114,9 +130,12 @@ function Cart() {
                 )
               )}
             </h3>
-            <MercadoPagoButton
-              preferenceId={{ preferenceId }}
-            ></MercadoPagoButton>
+            {/* Renderizar el botón solo si se tiene un preferenceId válido */}
+            {preferenceId ? (
+              <MercadoPagoButton preferenceId={preferenceId} />
+            ) : (
+              <p>Cargando botón de Mercado Pago...</p>
+            )}
           </div>
         </>
       )}
