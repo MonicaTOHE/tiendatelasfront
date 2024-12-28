@@ -13,6 +13,7 @@ const MercadoPagoButton = ({ preferenceId }) => {
         { locale: "es-CL" }
       );
 
+      console.log("PASO", preferenceId);
       // Renderizar el botón de pago
       mp.checkout({
         preference: {

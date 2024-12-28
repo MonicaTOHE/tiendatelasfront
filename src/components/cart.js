@@ -119,12 +119,6 @@ function Cart() {
             <MercadoPagoButton
               preferenceId={{ preferenceId }}
             ></MercadoPagoButton>
-            <div id="preferenceId">
-              <Wallet
-                initialization={{ preferenceId }}
-                customization={{ texts: { valueProp: "smart_option" } }}
-              />
-            </div>
           </div>
         </>
       )}
