@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useCart } from "./CartContext";
 import MercadoPagoButton from "./MercadoPagoButton";
 
@@ -6,13 +6,18 @@ function Cart() {
   const { cart, updateQuantity, removeFromCart } = useCart();
   const [preferenceId, setPreferenceId] = useState(null); // Estado para guardar el preferenceId
 
-  const mapped = cart.map((product) => ({
-    title: product.name,
-    description: product.description,
-    quantity: product.quantity,
-    currency_id: "CLP",
-    unit_price: product.price,
-  }));
+  // Memoizar el mapeo del carrito para evitar recrearlo en cada render
+  const mapped = useMemo(
+    () =>
+      cart.map((product) => ({
+        title: product.name,
+        description: product.description,
+        quantity: product.quantity,
+        currency_id: "CLP",
+        unit_price: product.price,
+      })),
+    [cart]
+  );
 
   useEffect(() => {
     const fetchPreferenceId = async () => {
