@@ -27,7 +27,7 @@ function Cart() {
         },
       }
     );
-    console.log(res);
+    console.log("asdadasdasdasdasdadadaddad", res);
     return res;
   };
   const formatPrice = (price) =>
@@ -116,7 +116,9 @@ function Cart() {
                 )
               )}
             </h3>
-            <MercadoPagoButton></MercadoPagoButton>
+            <MercadoPagoButton
+              preferenceId={{ preferenceId }}
+            ></MercadoPagoButton>
             <div id="preferenceId">
               <Wallet
                 initialization={{ preferenceId }}
