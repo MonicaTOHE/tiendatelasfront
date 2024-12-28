@@ -1,6 +1,7 @@
 import React from "react";
 import { useCart } from "./CartContext";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import MercadoPagoButton from "./MercadoPagoButton";
 initMercadoPago("APP_USR-0b32ed69-db60-48b8-bc6c-4efbca600684");
 
 function Cart() {
@@ -114,6 +115,7 @@ function Cart() {
                 )
               )}
             </h3>
+            <MercadoPagoButton></MercadoPagoButton>
             <div id="preferenceId">
               <Wallet
                 initialization={{ preferenceId }}
