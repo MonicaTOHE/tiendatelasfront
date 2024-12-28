@@ -1,55 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useCart } from "./CartContext";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import MercadoPagoButton from "./MercadoPagoButton";
-
 initMercadoPago("APP_USR-0b32ed69-db60-48b8-bc6c-4efbca600684");
 
 function Cart() {
   const { cart, updateQuantity, removeFromCart } = useCart();
-  const [preferenceId, setPreferenceId] = useState(null); // Estado para almacenar el preferenceId
-
-  const mapped = cart.map((product) => ({
-    title: product.name,
-    description: product.description,
-    quantity: product.quantity,
-    currency_id: "CLP",
-    unit_price: product.price,
-  }));
-
-  // Generar el preferenceId desde el backend
-  useEffect(() => {
-    const fetchPreferenceId = async () => {
-      if (mapped.length > 0) {
-        try {
-          const res = await fetch(
-            "https://tiendatelasbackend-production.up.railway.app/api/checkout",
-            {
-              method: "POST",
-              body: JSON.stringify(mapped),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const data = await res.json();
-          if (data.preference_id) {
-            setPreferenceId(data.preference_id); // Guardar el preferenceId en el estado
-          } else {
-            console.error(
-              "Error: No se recibió un preference_id válido.",
-              data
-            );
-          }
-        } catch (error) {
-          console.error("Error al generar el preference_id:", error);
-        }
-      }
+  const mapped = cart.map((product) => {
+    return {
+      title: product.name,
+      description: product.description,
+      quantity: product.quantity,
+      currency_id: "CLP",
+      unit_price: product.price,
     };
+  });
 
-    fetchPreferenceId();
-  }, [mapped]);
-
+  const preferenceId = async (event) => {
+    const res = await fetch(
+      "https://tiendatelasbackend-production.up.railway.app/api/checkout",
+      {
+        method: "POST",
+        body: JSON.stringify(mapped),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(res);
+    return res;
+  };
   const formatPrice = (price) =>
     price.toLocaleString("es-CL", { style: "currency", currency: "CLP" });
 
@@ -136,18 +116,13 @@ function Cart() {
                 )
               )}
             </h3>
-            {/* Solo renderizar el botón si el preferenceId está disponible */}
-            {preferenceId ? (
-              <div>
-                <MercadoPagoButton preferenceId={preferenceId} />
-                <Wallet
-                  initialization={{ preferenceId }}
-                  customization={{ texts: { valueProp: "smart_option" } }}
-                />
-              </div>
-            ) : (
-              <p>Cargando botón de Mercado Pago...</p>
-            )}
+            <MercadoPagoButton></MercadoPagoButton>
+            <div id="preferenceId">
+              <Wallet
+                initialization={{ preferenceId }}
+                customization={{ texts: { valueProp: "smart_option" } }}
+              />
+            </div>
           </div>
         </>
       )}

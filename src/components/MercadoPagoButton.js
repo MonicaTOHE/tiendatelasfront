@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 
 const MercadoPagoButton = ({ preferenceId }) => {
   useEffect(() => {
-    if (!preferenceId) return; // No hacer nada si el preferenceId no está definido
-
     // Cargar el SDK de Mercado Pago
     const script = document.createElement("script");
     script.src = "https://sdk.mercadopago.com/js/v2";
