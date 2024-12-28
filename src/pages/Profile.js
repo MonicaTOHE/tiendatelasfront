@@ -29,7 +29,7 @@ function Profile() {
   }, []);
 
   return (
-    <div className="container mt-5 shadow bg-white rounded">
+    <div className="container mt-5 shadow bg-white rounded baja ">
       <form>
         {/* Formulario con los datos del usuario usando userData */}
         {/* Input para email */}

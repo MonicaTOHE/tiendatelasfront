@@ -7,6 +7,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState(""); // Nuevo estado para el mensaje
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -34,15 +35,24 @@ function SignUp() {
       .then((result) => {
         console.log(result);
         if (result.acknowledged && result.insertedId) {
-          sessionStorage.setItem("userId", result.insertedId); // Guarda el ID obtenido del servidor
-          navigate("/profile"); // Redirección a Profile
+          setSuccessMessage(
+            "Registro exitoso. Redirigiendo para iniciar sesión..."
+          );
+          setTimeout(() => {
+            navigate("/login"); // Redirigir a LogIn después de 2 segundos
+          }, 2000);
         }
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => {
+        console.error("Error:", error);
+        setSuccessMessage(
+          "Hubo un error durante el registro. Inténtalo nuevamente."
+        );
+      });
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 baja">
       <h1>Registrarse</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -105,6 +115,9 @@ function SignUp() {
           Registrarme
         </button>
       </form>
+      {successMessage && (
+        <p className="mt-3 text-success">{successMessage}</p> // Mensaje de éxito
+      )}
     </div>
   );
 }

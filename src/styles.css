@@ -10,8 +10,8 @@ body {
 /* Barra de navegación */
 .navbar {
   display: flex;
-  justify-content: space-between; /* Home y Listado a la izquierda, resto a la derecha */
-  align-items: center;
+  justify-content: space-between; /* Alinear izquierda y derecha */
+  align-items: center; /* Centrar verticalmente */
   background-color: #967167;
   padding: 10px 20px;
   position: fixed;
@@ -22,102 +22,57 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-nav {
-  display: flex;
-  align-items: center;
-  gap: 15px; /* Espacio uniforme entre los enlaces */
-}
-
-/* Enlaces del lado izquierdo */
+/* Contenedor de enlaces de la izquierda */
 .navbar-nav-left {
   display: flex;
-  align-items: center;
-  gap: 15px;
+  align-items: center; /* Alinear verticalmente */
+  gap: 15px; /* Espaciado entre enlaces */
 }
 
-/* Enlaces del lado derecho */
+/* Contenedor de enlaces de la derecha */
 .navbar-nav-right {
   display: flex;
-  align-items: center;
-  gap: 15px;
+  align-items: center; /* Alinear verticalmente */
+  gap: 15px; /* Espaciado entre enlaces */
 }
 
 /* Estilo de los enlaces */
 .nav-link {
-  color: white !important;
-  text-decoration: none !important;
-  font-weight: bold !important;
+  color: white; /* Color blanco */
+  text-decoration: none; /* Sin subrayado */
+  font-weight: bold;
+  padding: 5px 10px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
 }
 
 .nav-link:hover {
-  background-color: #775a4e;
-  color: #007bff;
-  padding: 5px 10px;
-  border-radius: 5px;
+  background-color: #775a4e; /* Fondo oscuro al pasar el mouse */
+  color: #007bff; /* Color azul en hover */
 }
 
 .nav-link.active {
-  background-color: #7e6459;
+  background-color: #7e6459; /* Color para el enlace activo */
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
 }
 
-/* Icono del carrito */
+/* Botón del carrito */
 .cart-icon {
-  cursor: pointer;
+  display: flex;
+  align-items: center; /* Centrar icono y texto */
   padding: 5px 10px;
-  background: #f9f9f9;
+  background: #f9f9f9; /* Fondo claro */
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-size: 14px;
   font-weight: bold;
   color: #333;
-  display: flex;
-  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
 }
 
 .cart-icon:hover {
-  background: #e4e4e4;
-}
-
-
-/* Detalles del carrito */
-.cart-details {
-  position: absolute;
-  right: 20px;
-  top: 50px;
-  width: 300px;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 10px;
-  z-index: 1100;
-  display: none;
-}
-
-.cart-icon:hover + .cart-details,
-.cart-details:hover {
-  display: block;
-}
-
-.cart-details .cart-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.cart-details .cart-item img {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.cart-details .cart-item span {
-  font-size: 14px;
-  color: #333;
+  background: #e4e4e4; /* Fondo más oscuro al pasar el mouse */
 }
 
 /* Contenedor principal del Home */
@@ -128,6 +83,7 @@ body {
   text-align: center;
 }
 
+/* Título de la tienda */
 .titulo-tienda {
   font-family: "Playwrite GB S", serif;
   font-size: 48px;
@@ -252,4 +208,190 @@ body {
 .quantity-input {
   width: 60px;
   margin-left: 10px;
+}
+
+/* Cambios para ProductList */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Asegura que elementos estén distribuidos */
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-info {
+  flex-grow: 1; /* Ocupa el espacio disponible */
+  text-align: center;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-price {
+  font-size: 20px;
+  color: green;
+  font-weight: bold;
+  margin: 0;
+}
+
+.estiloParaContenedor {
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.estiloParaTarjetas {
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.estiloParaFilas {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.estiloParaImagen {
+  flex: 1 1 40%;
+  max-width: 40%;
+}
+
+.estiloParaImagenProducto {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 0 0 10px;
+}
+
+.estiloParaContenedor {
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.estiloParaTarjetas {
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.estiloParaFilas {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.estiloParaImagen {
+  flex: 1 1 40%;
+  max-width: 40%;
+}
+
+.estiloParaImagenProducto {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 0 0 10px;
+}
+
+.estiloParaContenido {
+  flex: 1 1 60%;
+  max-width: 60%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.estiloParaTitulo {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: left;
+}
+
+.estiloSubtitulo {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.estiloTabla {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+}
+
+.estiloTabla td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.estiloParaTexto {
+  font-size: 1rem;
+  line-height: 1.8; /* Mejora la separación entre líneas */
+  margin-bottom: 20px; /* Añade espacio entre párrafos */
+  color: #555;
+  text-align: justify; /* Justifica el texto para alineación uniforme */
+}
+
+.estiloParaBoton {
+  align-self: flex-start;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.estiloParaBoton:hover {
+  background-color: #0056b3;
+}
+
+.estiloParaCargar,
+.estiloParaErrores {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 20px;
+}
+
+.baja {
+
+  margin-top: 5% !important;
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding: 0.3em 0.6em;
+  border-radius: 1rem;
+  color: white;
+}
+
+.table img {
+  border-radius: 5px;
+}
+.btn-success {
+  font-size: 1.2rem;
+  padding: 0.6rem 1.5rem;
 }

@@ -7,6 +7,8 @@ import ProductList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetail";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
+import Cart from "./components/cart"; // Actualizado para reflejar la ubicación correcta
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/products/:id" element={<ProductDetail />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<LogIn />} />
+            <Route path="/cart" element={<Cart />} /> {/* Ruta del carrito */}
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </main>
       </Router>

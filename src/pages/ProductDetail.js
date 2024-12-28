@@ -1,30 +1,67 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCart } from "../components/CartContext"; // Ruta relativa ajustada
+import { useCart } from "../components/CartContext";
 
 function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch(`http://192.168.4.101:3000/api/products/${id}`)
-      .then((response) => response.json())
-      .then((data) => setProduct(data))
-      .catch((error) => console.error("Error:", error));
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`http://192.168.4.101:3000/api/products/${id}`, requestOptions)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error en la respuesta de la red");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setProduct(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setError(error.message);
+        setLoading(false);
+      });
   }, [id]);
 
-  if (!product) return <div>Cargando...</div>;
+  if (loading) return <div className="estiloParaCargar">Cargando...</div>;
+  if (error) return <div className="estiloParaErrores">Error: {error}</div>;
 
   return (
-    <div className="product-detail">
-      <h1>{product.name}</h1>
-      <img src={product.img} alt={product.name} style={{ maxWidth: "100%" }} />
-      <p>{product.description}</p>
-      <p>Marca: {product.brand}</p>
-      <button className="button" onClick={() => addToCart(product)}>
-        Agregar al Carrito
-      </button>
+    <div className="estiloParaContenedor">
+      <div className="estiloParaTarjetas">
+        <div className="estiloParaFilas">
+          <div className="estiloParaImagen">
+            <img
+              src={product.images[0]}
+              alt={product.name}
+              className="estiloParaImagenProducto"
+            />
+          </div>
+          <div className="estiloParaContenido">
+            <h1 className="estiloParaTitulo">{product.name}</h1>
+            <p className="estiloParaTexto">{product.description}</p>
+            <p className="estiloParaTexto">
+              <strong>Tipo:</strong> {product.type}
+            </p>
+            <button
+              className="estiloParaBoton"
+              onClick={() => addToCart(product)}
+            >
+              Agregar al Carrito
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

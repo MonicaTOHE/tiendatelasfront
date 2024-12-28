@@ -5,10 +5,10 @@ function LogIn() {
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Previene el comportamiento predeterminado del formulario
+    event.preventDefault();
 
     try {
-      const res = await fetch("https://reqres.in/api/login", {
+      const res = await fetch("http://192.168.4.101:3000/api/login", {
         method: "POST",
         body: JSON.stringify({
           email: event.target.email.value,
@@ -21,19 +21,20 @@ function LogIn() {
 
       if (res.ok) {
         const data = await res.json();
-        console.log(data); // Deberías ver un objeto con un token si es exitoso
+        console.log(data);
+        sessionStorage.setItem("userId", data._id); // Simula el almacenamiento del usuario
         navigate("/profile");
       } else {
         throw new Error("Authentication failed");
       }
     } catch (error) {
       console.error("Error during login:", error);
-      alert("Failed to log in");
+      alert("Error al iniciar sesión. Inténtalo de nuevo.");
     }
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 baja">
       <h1>Ingresa a tu cuenta</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
