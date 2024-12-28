@@ -4,8 +4,9 @@ import MercadoPagoButton from "./MercadoPagoButton";
 
 function Cart() {
   const { cart, updateQuantity, removeFromCart } = useCart();
-  const [preferenceId, setPreferenceId] = useState(null); // Estado para almacenar el preference_id
+  const [preferenceId, setPreferenceId] = useState(null); // Estado para guardar el preferenceId
 
+  // Mapeo de productos para enviar al backend
   const mapped = cart.map((product) => ({
     title: product.name,
     description: product.description,
@@ -14,6 +15,7 @@ function Cart() {
     unit_price: product.price,
   }));
 
+  // Lógica para obtener el preferenceId
   useEffect(() => {
     const fetchPreferenceId = async () => {
       try {
@@ -28,9 +30,8 @@ function Cart() {
           }
         );
         const data = await res.json();
-        console.log("Backend response:", data); // Verifica la respuesta
         if (data.preference_id) {
-          setPreferenceId(data.preference_id); // Guarda el preferenceId en el estado
+          setPreferenceId(data.preference_id); // Guardar el preferenceId
         } else {
           console.error("Error: No se recibió un preference_id válido.");
         }
@@ -44,6 +45,7 @@ function Cart() {
     }
   }, [mapped]);
 
+  // Formateo del precio
   const formatPrice = (price) =>
     price.toLocaleString("es-CL", { style: "currency", currency: "CLP" });
 
@@ -130,7 +132,7 @@ function Cart() {
                 )
               )}
             </h3>
-            {/* Renderizar el botón solo si se tiene un preferenceId válido */}
+            {/* Mostrar el botón de Mercado Pago solo si se obtuvo un preferenceId */}
             {preferenceId ? (
               <MercadoPagoButton preferenceId={preferenceId} />
             ) : (
