@@ -6,7 +6,6 @@ function Cart() {
   const { cart, updateQuantity, removeFromCart } = useCart();
   const [preferenceId, setPreferenceId] = useState(null); // Estado para guardar el preferenceId
 
-  // Mapeo de productos para enviar al backend
   const mapped = cart.map((product) => ({
     title: product.name,
     description: product.description,
@@ -15,7 +14,6 @@ function Cart() {
     unit_price: product.price,
   }));
 
-  // Lógica para obtener el preferenceId
   useEffect(() => {
     const fetchPreferenceId = async () => {
       try {
@@ -31,7 +29,7 @@ function Cart() {
         );
         const data = await res.json();
         if (data.preference_id) {
-          setPreferenceId(data.preference_id); // Guardar el preferenceId
+          setPreferenceId(data.preference_id); // Guarda el preferenceId
         } else {
           console.error("Error: No se recibió un preference_id válido.");
         }
@@ -45,7 +43,6 @@ function Cart() {
     }
   }, [mapped]);
 
-  // Formateo del precio
   const formatPrice = (price) =>
     price.toLocaleString("es-CL", { style: "currency", currency: "CLP" });
 
@@ -132,7 +129,7 @@ function Cart() {
                 )
               )}
             </h3>
-            {/* Mostrar el botón de Mercado Pago solo si se obtuvo un preferenceId */}
+            {/* Renderizar el botón solo si se tiene un preferenceId válido */}
             {preferenceId ? (
               <MercadoPagoButton preferenceId={preferenceId} />
             ) : (
