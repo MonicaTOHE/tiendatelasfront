@@ -8,17 +8,19 @@ function Profile() {
   });
 
   useEffect(() => {
-    const userId = sessionStorage.getItem("userId"); // Recuperamos el ID desde sessionStorage
+    const userId = sessionStorage.getItem("userId");
     if (userId) {
-      fetch(`http://192.168.4.101:3000/api/users/${userId}`, {
-        method: "GET",
-        redirect: "follow",
-      })
+      fetch(
+        `https://tiendatelasbackend-production.up.railway.app/api/users/${userId}`,
+        {
+          method: "GET",
+          redirect: "follow",
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
           setUserData({
-            // Actualizamos el estado con los datos del usuario
             name: data.name,
             lastName: data.lastName,
             email: data.email,
@@ -31,7 +33,7 @@ function Profile() {
   return (
     <div className="container mt-5 shadow bg-white rounded baja ">
       <form>
-        {/* Formulario con los datos del usuario usando userData */}
+        {/* Formularioo con los datos del usuario usando userData */}
         {/* Input para email */}
         <div className="row mb-3">
           <label

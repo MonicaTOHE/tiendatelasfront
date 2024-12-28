@@ -7,7 +7,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [successMessage, setSuccessMessage] = useState(""); // Nuevo estado para el mensaje
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -30,7 +30,10 @@ function SignUp() {
       redirect: "follow",
     };
 
-    fetch("http://192.168.4.101:3000/api/register", requestOptions)
+    fetch(
+      "https://tiendatelasbackend-production.up.railway.app/api/register",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
@@ -39,7 +42,7 @@ function SignUp() {
             "Registro exitoso. Redirigiendo para iniciar sesión..."
           );
           setTimeout(() => {
-            navigate("/login"); // Redirigir a LogIn después de 2 segundos
+            navigate("/login");
           }, 2000);
         }
       })
@@ -115,9 +118,7 @@ function SignUp() {
           Registrarme
         </button>
       </form>
-      {successMessage && (
-        <p className="mt-3 text-success">{successMessage}</p> // Mensaje de éxito
-      )}
+      {successMessage && <p className="mt-3 text-success">{successMessage}</p>}
     </div>
   );
 }

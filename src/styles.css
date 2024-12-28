@@ -1,4 +1,3 @@
-/* Estilos generales de la aplicación */
 body {
   background-color: #f4f4f9;
   color: #333;
@@ -7,11 +6,10 @@ body {
   padding: 0;
 }
 
-/* Barra de navegación */
 .navbar {
   display: flex;
-  justify-content: space-between; /* Alinear izquierda y derecha */
-  align-items: center; /* Centrar verticalmente */
+  justify-content: space-between; 
+  align-items: center;
   background-color: #967167;
   padding: 10px 20px;
   position: fixed;
@@ -22,47 +20,43 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Contenedor de enlaces de la izquierda */
 .navbar-nav-left {
   display: flex;
-  align-items: center; /* Alinear verticalmente */
-  gap: 15px; /* Espaciado entre enlaces */
+  align-items: center; 
+  gap: 15px; 
 }
 
-/* Contenedor de enlaces de la derecha */
 .navbar-nav-right {
   display: flex;
-  align-items: center; /* Alinear verticalmente */
-  gap: 15px; /* Espaciado entre enlaces */
+  align-items: center;
+  gap: 15px; 
 }
 
-/* Estilo de los enlaces */
 .nav-link {
-  color: white; /* Color blanco */
-  text-decoration: none; /* Sin subrayado */
+  color: white; 
+  text-decoration: none; 
   font-weight: bold;
-  padding: 5px 10px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
+  padding: 5px 10px; 
+  border-radius: 5px;
 }
 
 .nav-link:hover {
-  background-color: #775a4e; /* Fondo oscuro al pasar el mouse */
-  color: #007bff; /* Color azul en hover */
+  background-color: #775a4e; 
+  color: #007bff; 
 }
 
 .nav-link.active {
-  background-color: #7e6459; /* Color para el enlace activo */
+  background-color: #7e6459; 
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
 }
 
-/* Botón del carrito */
 .cart-icon {
   display: flex;
-  align-items: center; /* Centrar icono y texto */
+  align-items: center; 
   padding: 5px 10px;
-  background: #f9f9f9; /* Fondo claro */
+  background: #f9f9f9; 
   border-radius: 5px;
   font-size: 14px;
   font-weight: bold;
@@ -72,18 +66,16 @@ body {
 }
 
 .cart-icon:hover {
-  background: #e4e4e4; /* Fondo más oscuro al pasar el mouse */
+  background: #e4e4e4; 
 }
 
-/* Contenedor principal del Home */
 .home-container {
   max-width: 1200px;
-  margin: 120px auto; /* Centrado horizontal y espacio superior */
+  margin: 120px auto;
   padding: 20px;
   text-align: center;
 }
 
-/* Título de la tienda */
 .titulo-tienda {
   font-family: "Playwrite GB S", serif;
   font-size: 48px;
@@ -95,7 +87,6 @@ body {
   margin-bottom: 40px;
 }
 
-/* Contenido introductorio */
 .intro-content {
   text-align: center;
   margin-bottom: 40px;
@@ -114,7 +105,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Imagen del Home */
 .home-image {
   max-width: 80%;
   height: auto;
@@ -123,7 +113,7 @@ body {
   margin: 20px auto;
 }
 
-/* Sección del proceso de fabricación */
+
 .fabric-process-section {
   text-align: center;
   padding: 20px 0;
@@ -210,11 +200,11 @@ body {
   margin-left: 10px;
 }
 
-/* Cambios para ProductList */
+
 .product-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Asegura que elementos estén distribuidos */
+  justify-content: space-between; 
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -226,7 +216,7 @@ body {
 }
 
 .product-info {
-  flex-grow: 1; /* Ocupa el espacio disponible */
+  flex-grow: 1; 
   text-align: center;
 }
 
@@ -347,10 +337,10 @@ body {
 
 .estiloParaTexto {
   font-size: 1rem;
-  line-height: 1.8; /* Mejora la separación entre líneas */
-  margin-bottom: 20px; /* Añade espacio entre párrafos */
+  line-height: 1.8; 
+  margin-bottom: 20px; 
   color: #555;
-  text-align: justify; /* Justifica el texto para alineación uniforme */
+  text-align: justify; 
 }
 
 .estiloParaBoton {

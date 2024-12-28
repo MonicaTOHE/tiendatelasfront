@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useCart } from "./CartContext"; // Importar el contexto del carrito
+import { useCart } from "./CartContext";
 
 function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { cart } = useCart(); // Usar el carrito desde el contexto
+  const { cart } = useCart();
 
-  // Calcular la cantidad total de productos en el carrito
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (

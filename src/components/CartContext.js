@@ -20,7 +20,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const updateQuantity = (id, quantity) => {
-    if (quantity < 1) return; // Evita cantidades menores a 1
+    if (quantity < 1) return;
     setCart((prevCart) =>
       prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
     );

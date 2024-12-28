@@ -7,7 +7,7 @@ function ProductList() {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch("http://192.168.4.101:3000/api/products")
+    fetch("https://tiendatelasbackend-production.up.railway.app/api/products")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error:", error));

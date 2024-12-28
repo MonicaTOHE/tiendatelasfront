@@ -7,7 +7,7 @@ import ProductList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetail";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
-import Cart from "./components/cart"; // Actualizado para reflejar la ubicación correcta
+import Cart from "./components/cart";
 import Profile from "./pages/Profile";
 
 function App() {

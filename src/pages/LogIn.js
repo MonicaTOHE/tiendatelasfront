@@ -8,21 +8,24 @@ function LogIn() {
     event.preventDefault();
 
     try {
-      const res = await fetch("http://192.168.4.101:3000/api/login", {
-        method: "POST",
-        body: JSON.stringify({
-          email: event.target.email.value,
-          password: event.target.password.value,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        "https://tiendatelasbackend-production.up.railway.app/api/login",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: event.target.email.value,
+            password: event.target.password.value,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (res.ok) {
         const data = await res.json();
         console.log(data);
-        sessionStorage.setItem("userId", data._id); // Simula el almacenamiento del usuario
+        sessionStorage.setItem("userId", data._id);
         navigate("/profile");
       } else {
         throw new Error("Authentication failed");

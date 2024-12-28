@@ -15,7 +15,10 @@ function ProductDetail() {
       redirect: "follow",
     };
 
-    fetch(`http://192.168.4.101:3000/api/products/${id}`, requestOptions)
+    fetch(
+      `https://tiendatelasbackend-production.up.railway.app/api/products/${id}`,
+      requestOptions
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Error en la respuesta de la red");

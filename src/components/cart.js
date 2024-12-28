@@ -1,9 +1,33 @@
 import React from "react";
 import { useCart } from "./CartContext";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+initMercadoPago("APP_USR-0b32ed69-db60-48b8-bc6c-4efbca600684");
 
 function Cart() {
   const { cart, updateQuantity, removeFromCart } = useCart();
+  const mapped = cart.map((product) => {
+    return {
+      title: product.name,
+      description: product.description,
+      quantity: product.quantity,
+      currency_id: "CLP",
+      unit_price: product.price,
+    };
+  });
 
+  const preferenceId = async (event) => {
+    const res = await fetch(
+      "https://tiendatelasbackend-production.up.railway.app/api/checkout",
+      {
+        method: "POST",
+        body: JSON.stringify(mapped),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return res;
+  };
   const formatPrice = (price) =>
     price.toLocaleString("es-CL", { style: "currency", currency: "CLP" });
 
@@ -90,7 +114,12 @@ function Cart() {
                 )
               )}
             </h3>
-            <button className="btn btn-success btn-lg">Comprar</button>
+            <div id="preferenceId">
+              <Wallet
+                initialization={{ preferenceId }}
+                customization={{ texts: { valueProp: "smart_option" } }}
+              />
+            </div>
           </div>
         </>
       )}
