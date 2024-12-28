@@ -27,6 +27,7 @@ function Cart() {
         },
       }
     );
+    console.log(res);
     return res;
   };
   const formatPrice = (price) =>
